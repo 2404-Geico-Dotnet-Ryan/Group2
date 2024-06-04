@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\U88ABJ\\Revature\\Chante-Osborne-Project-Repo\\OtherProjectOptions\\PlantShopTwo\\PlantShopTwo.csproj": {}
+    "c:\\Users\\U88ABJ\\Revature\\ProjectTwo\\Group2\\PlantShopTwo.csproj": {}
   },
   "projects": {
-    "C:\\Users\\U88ABJ\\Revature\\Chante-Osborne-Project-Repo\\OtherProjectOptions\\PlantShopTwo\\PlantShopTwo.csproj": {
+    "c:\\Users\\U88ABJ\\Revature\\ProjectTwo\\Group2\\PlantShopTwo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\U88ABJ\\Revature\\Chante-Osborne-Project-Repo\\OtherProjectOptions\\PlantShopTwo\\PlantShopTwo.csproj",
+        "projectUniqueName": "c:\\Users\\U88ABJ\\Revature\\ProjectTwo\\Group2\\PlantShopTwo.csproj",
         "projectName": "PlantShopTwo",
-        "projectPath": "C:\\Users\\U88ABJ\\Revature\\Chante-Osborne-Project-Repo\\OtherProjectOptions\\PlantShopTwo\\PlantShopTwo.csproj",
+        "projectPath": "c:\\Users\\U88ABJ\\Revature\\ProjectTwo\\Group2\\PlantShopTwo.csproj",
         "packagesPath": "C:\\Users\\U88ABJ\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\U88ABJ\\Revature\\Chante-Osborne-Project-Repo\\OtherProjectOptions\\PlantShopTwo\\obj\\",
+        "outputPath": "c:\\Users\\U88ABJ\\Revature\\ProjectTwo\\Group2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\U88ABJ\\AppData\\Roaming\\NuGet\\NuGet.Config"

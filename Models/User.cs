@@ -8,7 +8,8 @@ namespace ProjectTwo.Models
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public string? Role { get; set; }
-        public ICollection<Plant> Plants { get; set; }
+        // public int PurchaseId { get; set; }
+        public PurchaseHistory PurchaseHistory { get; set; }
 
         //No Arg Constructor
         public User()
@@ -18,11 +19,10 @@ namespace ProjectTwo.Models
             FirstName = "";
             LastName = "";
             Role = "";
-            Plants = [];
         }
 
         // Full Arg Constructor
-        public User(int userId, string userName, string password, string firstName, string lastName, string role, ICollection<Plant> plants)
+        public User(int userId, string userName, string password, string firstName, string lastName, string role)
         {
             UserId = userId;
             UserName = userName;
@@ -30,7 +30,6 @@ namespace ProjectTwo.Models
             FirstName = firstName;
             LastName = lastName;
             Role = role;
-            Plants = plants;
         }
 
         // ToString

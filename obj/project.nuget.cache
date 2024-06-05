@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "7TPsQO4Mw/6PofwZA50XHx8pv2FrIr7ue3vCQBgDX7/zpgLUuH0cXypVxwZ2AgZ5Fkhg2CQANd8w1S7+4Fcp5Q==",
+  "dgSpecHash": "95iqgVQO8TWZNAkhnEkfOvy+/pK0Gt7RMwe8tp5KvLJXw1tvP+sqPazJR19bW2cz3JMdJKrEBTiLqkLSPaWXVQ==",
   "success": true,
-  "projectFilePath": "c:\\Users\\U88ABJ\\Revature\\ProjectTwo\\Group2\\PlantShopTwo.csproj",
+  "projectFilePath": "C:\\Users\\U88ABJ\\Revature\\ProjectTwo\\Group2\\PlantShopTwo.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\U88ABJ\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\U88ABJ\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

@@ -9,6 +9,7 @@ namespace ProjectTwo.Data
         { }
         public DbSet<User> Users { get; set; }
         public DbSet<Plant> Plants { get; set; }
+        public DbSet<PurchaseHistory> PurchaseHistories { get; set; }
 
         // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         // {
@@ -17,10 +18,15 @@ namespace ProjectTwo.Data
         // }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>()
-                .HasMany(p => p.Plants)
-                .WithOne(u => u.Buyer)
-                .HasForeignKey(p => p.UserId);
+            modelBuilder.Entity<PurchaseHistory>()
+                .HasOne(p => p.Plant)
+                .WithOne(h => h.PurchaseHistory)
+                .HasForeignKey<Plant>(p => p.PlantId);
+
+            modelBuilder.Entity<PurchaseHistory>()
+                .HasOne(u => u.User)
+                .WithOne(h => h.PurchaseHistory)
+                .HasForeignKey<User>(u => u.UserId);
         }
 
     }

@@ -5,13 +5,14 @@ namespace ProjectTwo.Models
 {
     public class Plant
     {
-        public int Id { get; set; }
+        public int PlantId { get; set; }
         public string PlantName { get; set; }
         public double Price { get; set; }
-        public bool Available { get; set; }
-        public int UserId { get; set; }
-        public User? Buyer { get; set; }
-
+        public int Quantity {get; set; }
+        // public bool Available { get; set; }
+        // public int UserId { get; set; }
+        // public User? Buyer { get; set; }
+        public PurchaseHistory PurchaseHistory { get; set; }
         // No Arg Constructor
         public Plant()
         {
@@ -19,20 +20,18 @@ namespace ProjectTwo.Models
         }
 
         // Full Arg Constructor
-        public Plant(int id, string plantName, double price, bool available, int userId, User? buyer)
+        public Plant(int plantId, string plantName, double price, int quantity)
         {
-            Id = id;
+            PlantId = plantId;
             PlantName = plantName;
             Price = price;
-            Available = available;
-            UserId = userId;
-            Buyer = buyer;
+            Quantity = quantity;
 
         }
 
         public override string ToString()
         {
-            return $"{{Id: {Id}, Plant Name: '{PlantName}', Price: {Price}, Available: {Available}, User Id: {UserId}, Buyer: '{Buyer}'}}";
+            return $"{{Plant Id: {PlantId}, Plant Name: '{PlantName}', Price: {Price}, Quantity: {Quantity}}}";
         }
 
     }

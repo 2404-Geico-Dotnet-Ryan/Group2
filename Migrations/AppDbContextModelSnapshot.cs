@@ -23,14 +23,8 @@ namespace PlantShopTwo.Migrations
 
             modelBuilder.Entity("ProjectTwo.Models.Plant", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("PlantId")
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<bool>("Available")
-                        .HasColumnType("bit");
 
                     b.Property<string>("PlantName")
                         .IsRequired()
@@ -39,23 +33,43 @@ namespace PlantShopTwo.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("PlantId");
+
+                    b.ToTable("Plants");
+                });
+
+            modelBuilder.Entity("ProjectTwo.Models.PurchaseHistory", b =>
+                {
+                    b.Property<int>("PurchaseHistoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PurchaseHistoryId"));
+
+                    b.Property<int>("PlantId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("PurchaseHistoryId");
 
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Plants");
+                    b.ToTable("PurchaseHistories");
                 });
 
             modelBuilder.Entity("ProjectTwo.Models.User", b =>
                 {
                     b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
@@ -79,18 +93,33 @@ namespace PlantShopTwo.Migrations
 
             modelBuilder.Entity("ProjectTwo.Models.Plant", b =>
                 {
-                    b.HasOne("ProjectTwo.Models.User", "Buyer")
-                        .WithMany("Plants")
-                        .HasForeignKey("UserId")
+                    b.HasOne("ProjectTwo.Models.PurchaseHistory", "PurchaseHistory")
+                        .WithOne("Plant")
+                        .HasForeignKey("ProjectTwo.Models.Plant", "PlantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Buyer");
+                    b.Navigation("PurchaseHistory");
                 });
 
             modelBuilder.Entity("ProjectTwo.Models.User", b =>
                 {
-                    b.Navigation("Plants");
+                    b.HasOne("ProjectTwo.Models.PurchaseHistory", "PurchaseHistory")
+                        .WithOne("User")
+                        .HasForeignKey("ProjectTwo.Models.User", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("PurchaseHistory");
+                });
+
+            modelBuilder.Entity("ProjectTwo.Models.PurchaseHistory", b =>
+                {
+                    b.Navigation("Plant")
+                        .IsRequired();
+
+                    b.Navigation("User")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

@@ -1,4 +1,4 @@
-namespace ProjectTwo.Models
+namespace ProjectTwo.DTOs
 {
     public class UserDTO
     {

@@ -11,7 +11,7 @@ using ProjectTwo.Data;
 namespace PlantShopTwo.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240605213859_InitialCreate")]
+    [Migration("20240607201942_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -27,7 +27,10 @@ namespace PlantShopTwo.Migrations
             modelBuilder.Entity("ProjectTwo.Models.Plant", b =>
                 {
                     b.Property<int>("PlantId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PlantId"));
 
                     b.Property<string>("PlantName")
                         .IsRequired()
@@ -66,13 +69,20 @@ namespace PlantShopTwo.Migrations
 
                     b.HasKey("PurchaseHistoryId");
 
+                    b.HasIndex("PlantId");
+
+                    b.HasIndex("UserId");
+
                     b.ToTable("PurchaseHistories");
                 });
 
             modelBuilder.Entity("ProjectTwo.Models.User", b =>
                 {
                     b.Property<int>("UserId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
@@ -83,9 +93,6 @@ namespace PlantShopTwo.Migrations
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Role")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("UserName")
                         .HasColumnType("nvarchar(max)");
 
@@ -94,35 +101,33 @@ namespace PlantShopTwo.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("ProjectTwo.Models.Plant", b =>
+            modelBuilder.Entity("ProjectTwo.Models.PurchaseHistory", b =>
                 {
-                    b.HasOne("ProjectTwo.Models.PurchaseHistory", "PurchaseHistory")
-                        .WithOne("Plant")
-                        .HasForeignKey("ProjectTwo.Models.Plant", "PlantId")
+                    b.HasOne("ProjectTwo.Models.Plant", "Plant")
+                        .WithMany("PurchaseHistories")
+                        .HasForeignKey("PlantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("PurchaseHistory");
+                    b.HasOne("ProjectTwo.Models.User", "User")
+                        .WithMany("PurchaseHistories")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Plant");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ProjectTwo.Models.Plant", b =>
+                {
+                    b.Navigation("PurchaseHistories");
                 });
 
             modelBuilder.Entity("ProjectTwo.Models.User", b =>
                 {
-                    b.HasOne("ProjectTwo.Models.PurchaseHistory", "PurchaseHistory")
-                        .WithOne("User")
-                        .HasForeignKey("ProjectTwo.Models.User", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("PurchaseHistory");
-                });
-
-            modelBuilder.Entity("ProjectTwo.Models.PurchaseHistory", b =>
-                {
-                    b.Navigation("Plant")
-                        .IsRequired();
-
-                    b.Navigation("User")
-                        .IsRequired();
+                    b.Navigation("PurchaseHistories");
                 });
 #pragma warning restore 612, 618
         }

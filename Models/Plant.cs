@@ -15,6 +15,7 @@ namespace ProjectTwo.Models
         //public PurchaseHistory PurchaseHistory { get; set; }
         public ICollection<PurchaseHistory> PurchaseHistories {get;set;}
         // No Arg Constructor
+        /*
         public Plant()
         {
             PlantName = "";
@@ -34,6 +35,6 @@ namespace ProjectTwo.Models
         {
             return $"{{Plant Id: {PlantId}, Plant Name: '{PlantName}', Price: {Price}, Quantity: {Quantity}}}";
         }
-
+        */
     }
 }

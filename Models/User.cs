@@ -9,10 +9,11 @@ namespace ProjectTwo.Models
         public string? LastName { get; set; }
         
         // public int PurchaseId { get; set; }
-         public PurchaseHistory PurchaseHistory { get; set; }
+         //public PurchaseHistory PurchaseHistory { get; set; }
          public ICollection<PurchaseHistory> PurchaseHistories {get; set;}
 
         //No Arg Constructor
+        /*
         public User()
         {
             UserName = "";
@@ -38,6 +39,6 @@ namespace ProjectTwo.Models
         {
             return $"{{UserId: {UserId},UserName: '{UserName}',Password: '{Password}',FirstName: '{FirstName}', LastName: '{LastName}'}}";
         }
-
+        */
     }
 }

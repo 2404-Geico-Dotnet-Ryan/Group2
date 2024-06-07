@@ -27,6 +27,12 @@ namespace ProjectTwo.Data
                 .HasOne(u => u.User)
                 .WithOne(h => h.PurchaseHistory)
                 .HasForeignKey<User>(u => u.UserId);
+
+            modelBuilder.Entity<User>()
+              .HasOne(h => h.PurchaseHistory)
+              .WithOne(u => u.User);
+              //.HasForeignKey(u => u.UserId);
+
         }
 
     }

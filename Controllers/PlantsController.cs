@@ -22,7 +22,7 @@ namespace ProjectTwo.Controllers
         public ActionResult<IEnumerable<PlantDTO>> GetPlants()
         {
             var plants = _context.Plants
-                .Include(p => p.PurchaseHistory)
+                //.Include(p => p.PurchaseHistory)
                 .Select(p => new PlantDTO
                 {
                     PlantName = p.PlantName,
@@ -37,7 +37,7 @@ namespace ProjectTwo.Controllers
         public ActionResult<PlantDTO> GetPlantById(int PlantId)
         {
             var plant = _context.Plants
-            .Include(h => h.PurchaseHistory)
+            //.Include(h => h.PurchaseHistory)
             .FirstOrDefault(p => p.PlantId == PlantId);
             //var plant = _context.Plants.Find(PlantId);
             var plantDTO = new PlantDTO

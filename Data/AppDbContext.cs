@@ -18,20 +18,15 @@ namespace ProjectTwo.Data
         // }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<PurchaseHistory>()
-                .HasOne(p => p.Plant)
-                .WithOne(h => h.PurchaseHistory)
-                .HasForeignKey<Plant>(p => p.PlantId);
-
-            modelBuilder.Entity<PurchaseHistory>()
-                .HasOne(u => u.User)
-                .WithOne(h => h.PurchaseHistory)
-                .HasForeignKey<User>(u => u.UserId);
-
             modelBuilder.Entity<User>()
-              .HasOne(h => h.PurchaseHistory)
-              .WithOne(u => u.User);
-              //.HasForeignKey(u => u.UserId);
+              .HasMany(h => h.PurchaseHistories)
+              .WithOne(u => u.User)
+              .HasForeignKey(h => h.UserId);
+
+            modelBuilder.Entity<Plant>()
+                .HasMany(p => p.PurchaseHistories)
+                .WithOne(p => p.Plant)
+                .HasForeignKey(p => p.PlantId);
 
         }
 

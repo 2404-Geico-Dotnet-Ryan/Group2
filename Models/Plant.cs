@@ -12,7 +12,8 @@ namespace ProjectTwo.Models
         // public bool Available { get; set; }
         // public int UserId { get; set; }
         // public User? Buyer { get; set; }
-        public PurchaseHistory PurchaseHistory { get; set; }
+        //public PurchaseHistory PurchaseHistory { get; set; }
+        public ICollection<PurchaseHistory> PurchaseHistories {get;set;}
         // No Arg Constructor
         public Plant()
         {

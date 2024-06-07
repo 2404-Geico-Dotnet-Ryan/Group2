@@ -10,6 +10,8 @@ namespace ProjectTwo.Models
 
         public User User { get; set; }
         public Plant Plant { get; set; }
+
+        public ICollection<Plant> Plants {get;set;}
         // No Arg Constructor
         public PurchaseHistory()
         {

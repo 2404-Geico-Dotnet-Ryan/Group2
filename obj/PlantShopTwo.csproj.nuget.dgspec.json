@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+
     "C:\\Users\\U88ABJ\\Revature\\Group2\\PlantShopTwo.csproj": {}
   },
   "projects": {
@@ -15,6 +16,7 @@
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\U88ABJ\\AppData\\Roaming\\NuGet\\NuGet.Config"
+
         ],
         "originalTargetFrameworks": [
           "net8.0"

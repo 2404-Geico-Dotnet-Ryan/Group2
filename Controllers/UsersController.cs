@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using ProjectTwo.Data;
 using ProjectTwo.DTOs;
-using ProjectTwo.Models;
+using ProjectTwo.Services;
+
 
 namespace ProjectTwo.Controllers
 
@@ -10,93 +10,66 @@ namespace ProjectTwo.Controllers
     [Route("[controller]")]
 
     public class UsersController : ControllerBase
-
-    //     public User? AddUser(User u);
-    //     public User? GetUser(int id);
-    //     public List<User>? GetAllUsers();
-    //     public User? UpdateUser(User u);
-    //     public User? DeleteUser(int id);
-    //     public void Save();
     {
-        private readonly AppDbContext _context;
 
-        public UsersController(AppDbContext context)
+        private readonly IUsersService _usersService;
+
+        public UsersController(IUsersService usersService)
         {
-            _context = context;
+            _usersService = usersService;
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<UserDTO>> GetUser()
+        public ActionResult<IEnumerable<UserDTO>> GetUsers()
         {
-            var users = _context.Users
-                .Select(u => new UserDTO
-                {
-                    UserId = u.UserId,
-                    UserName = u.UserName,
-                    Password = u.Password,
-                    FirstName = u.FirstName,
-                    LastName = u.LastName,
-                }).ToList();
-
-            return users;
+            var users = _usersService.GetUsers();
+            return Ok(users);
         }
 
         [HttpGet("{UserId}")]
         public ActionResult<UserDTO> GetUserById(int UserId)
         {
-            var user = _context.Users.Find(UserId);
-            var userDto = new UserDTO
-            {
-                UserName = user.UserName,
-                UserId = user.UserId,
-                Password = user.Password,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-            };
-            return userDto;
+            var user = _usersService.GetUserById(UserId);
+            return Ok(user);
         }
 
         [HttpPost]
         public ActionResult<UserDTO> AddUser(UserDTO userDto)
         {
-            var user = new User
-            {
-                UserName = userDto.UserName,
-                Password = userDto.Password,
-                FirstName = userDto.FirstName,
-                LastName = userDto.LastName,
-            };
-
-            _context.Users.Add(user);
-            _context.SaveChanges();
-            return Ok(userDto);
-            //return CreatedAtAction(nameof(GetUserById), new { User = user.UserId }, userDto);
+            var user = _usersService.AddUser(userDto);
+            return Ok(user);
         }
 
         [HttpPut("{UserId}")]
         public ActionResult<UserDTO> UpdateUser(int UserId, UserDTO UpdatedUser)
         {
-            var user = _context.Users.FirstOrDefault(u => u.UserId == UserId);
-
-            user.UserName = UpdatedUser.UserName;
-            user.Password = UpdatedUser.Password;
-            user.FirstName = UpdatedUser.FirstName;
-            user.LastName = UpdatedUser.LastName;
-
-            _context.Users.Update(user);
-            _context.SaveChanges();
-
-            return Ok(UpdatedUser);
+            var user = _usersService.UpdateUser(UserId, UpdatedUser);
+            return Ok(user);
         }
 
         [HttpDelete("{UserId}")]
         public IActionResult DeleteUser(int UserId)
         {
-            var user = _context.Users.FirstOrDefault(u => u.UserId == UserId);
-            _context.Users.Remove(user);
-            _context.SaveChanges();
-
+            _usersService.DeleteUser(UserId);
             return Ok();
+        }
+
+        [HttpPost("Login")]
+        public ActionResult<UserDTO> LoginUser(UserDTO userDto)
+        {
+            try
+            {
+                var user = _usersService.LoginUser(userDto.UserName, userDto.Password);
+                return Ok(user);
+            }
+            catch (Exception e)
+            {
+                if (e.Message == "Invalid UserName / Password combo. Please try again.")
+                {
+                    return Forbid(e.Message);
+                }
+                throw;
+            }
         }
     }
 }

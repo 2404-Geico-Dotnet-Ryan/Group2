@@ -40,7 +40,7 @@ namespace ProjectTwo.Services
         public IEnumerable<PurchaseHistoryDTO> GetPurchaseHistories()
         {
             var purchaseHistories = _context.PurchaseHistories
-                .Include(p => p.Plant)  //***Do we needs plural???
+                .Include(p => p.Plant)  
                 .Select(p => new PurchaseHistoryDTO
                 {
                     UserId = p.UserId,
@@ -58,10 +58,10 @@ namespace ProjectTwo.Services
         {
             var purchaseHistory = _context.PurchaseHistories.Find(PurchaseHistoryId);
 
-            //var plant = _context.Plants.Find(PlantId);
-            var purchaseHistoryDTO = new PurchaseHistoryDTO  //Questionable????
+            
+            var purchaseHistoryDTO = new PurchaseHistoryDTO  
             {
-                //UserId = purchaseHistory.UserId,
+                UserId = purchaseHistory.UserId,
                 PlantId = purchaseHistory.PlantId,
                 Quantity = purchaseHistory.Quantity,
                 Price = purchaseHistory.Price
@@ -73,9 +73,10 @@ namespace ProjectTwo.Services
         {
             var purchaseHistory = _context.PurchaseHistories.FirstOrDefault(h => h.PurchaseHistoryId == PurchaseHistoryId);
 
-            //purchaseHistory.PlantId = UpdatedPurchaseHistory.PlantId;
+            purchaseHistory.UserId = purchaseHistoryDTO.UserId;
+            purchaseHistory.PlantId = purchaseHistoryDTO.PlantId;
             purchaseHistory.Quantity = purchaseHistoryDTO.Quantity;
-            //purchaseHistory.Price = UpdatedPurchaseHistory.Price   //****more questions
+            purchaseHistory.Price = purchaseHistoryDTO.Price;   
 
             _context.PurchaseHistories.Update(purchaseHistory);
             _context.SaveChanges();

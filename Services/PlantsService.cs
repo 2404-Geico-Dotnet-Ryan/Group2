@@ -46,7 +46,7 @@ namespace ProjectTwo.Services
                 throw new Exception("Plant not found");
             }
 
-            //var plant = _context.Plants.Find(PlantId);
+            
             var plantDTO = new PlantDTO
             {
                 PlantName = plant.PlantName,

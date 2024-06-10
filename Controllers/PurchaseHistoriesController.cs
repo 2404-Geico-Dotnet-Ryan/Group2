@@ -1,101 +1,76 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using ProjectTwo.Data;
 using ProjectTwo.DTOs;
-using ProjectTwo.Models;
+using ProjectTwo.Services;
 
 namespace ProjectTwo.Controllers
-
 {
     [ApiController]
     [Route("[controller]")]
     public class PurchaseHistoriesController : ControllerBase
     {
 
-        private readonly AppDbContext _context;
+        private readonly IPurchaseHistoriesService _purchaseHistoriesService;
 
-        public PurchaseHistoriesController(AppDbContext context)
+        public PurchaseHistoriesController(IPurchaseHistoriesService purchaseHistoriesService)
         {
-            _context = context;
+            _purchaseHistoriesService = purchaseHistoriesService;
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<PurchaseHistoryDTO>> GetPlants()
+        public ActionResult<IEnumerable<PurchaseHistoryDTO>> GetPurchaseHistories()
         {
-            var purchaseHistories = _context.PurchaseHistories
-                .Include(p => p.Plant)  //***Do we needs plural???
-                .Select(p => new PurchaseHistoryDTO
-                {
-                    UserId = p.UserId,
-                    PlantId = p.PlantId,
-                    Quantity = p.Quantity,
-                    Price = p.Price
-
-                }).ToList();
-
-
-            return purchaseHistories;
+            var purchaseHistories = _purchaseHistoriesService.GetPurchaseHistories();
+            return Ok(purchaseHistories);
         }
 
         [HttpGet("{PurchaseHistoriesId}")]
         public ActionResult<PurchaseHistoryDTO> GetPurchaseHistoryById(int PurchaseHistoryId)
         {
-            var purchaseHistory = _context.PurchaseHistories.Find(PurchaseHistoryId);
-
-            //var plant = _context.Plants.Find(PlantId);
-            var purchaseHistoryDTO = new PurchaseHistoryDTO  //Questionable????
-            {
-                //UserId = purchaseHistory.UserId,
-                PlantId = purchaseHistory.PlantId,
-                Quantity = purchaseHistory.Quantity,
-                Price = purchaseHistory.Price
-            };
-            return purchaseHistoryDTO;
+            var purchaseHistory = _purchaseHistoriesService.GetPurchaseHistoryById(PurchaseHistoryId);
+            return Ok(purchaseHistory);
         }
 
         [HttpPost]
         public ActionResult<PurchaseHistoryDTO> AddPurchaseHistory(PurchaseHistoryDTO purchaseHistoryDTO)
         {
-
-
-            var purchaseHistory = new PurchaseHistory
-            {
-                PlantId = purchaseHistoryDTO.PlantId,
-                Quantity = purchaseHistoryDTO.Quantity,
-                Price = purchaseHistoryDTO.Price
-            };
-
-            _context.PurchaseHistories.Add(purchaseHistory);
-            _context.SaveChanges();
-
-            return CreatedAtAction(nameof(GetPurchaseHistoryById), new { purchaseHistoryId = purchaseHistory.PurchaseHistoryId }, purchaseHistoryDTO);
-            //Check the GetPurchaseHistoryById ****************************
+            var purchaseHistory = _purchaseHistoriesService.AddPurchaseHistory(purchaseHistoryDTO);
+            return Ok(purchaseHistory);
         }
 
 
         [HttpPut("{PurchaseHistoryId}")]
         public ActionResult<PurchaseHistoryDTO> UpdatePurchaseHistory(int PurchaseHistoryId, PurchaseHistoryDTO UpdatedPurchaseHistory)
         {
-            var purchaseHistory = _context.PurchaseHistories.FirstOrDefault(h => h.PurchaseHistoryId == PurchaseHistoryId);
-
-            //purchaseHistory.PlantId = UpdatedPurchaseHistory.PlantId;
-            purchaseHistory.Quantity = UpdatedPurchaseHistory.Quantity;
-            //purchaseHistory.Price = UpdatedPurchaseHistory.Price   //****more questions 
-
-            _context.PurchaseHistories.Update(purchaseHistory);
-            _context.SaveChanges();
-
-            return Ok(UpdatedPurchaseHistory);
+            var purchaseHistory = _purchaseHistoriesService.UpdatePurchaseHistory(PurchaseHistoryId, UpdatedPurchaseHistory);
+            return Ok(purchaseHistory);
         }
 
         [HttpDelete("{PurchaseHistoryId}")]
-        public IActionResult DeletePurchseHistory(int PurchaseHistoryId)
+        public IActionResult DeletePurchaseHistory(int PurchaseHistoryId)
         {
-            var purchaseHistory = _context.PurchaseHistories.FirstOrDefault(h => h.PurchaseHistoryId == PurchaseHistoryId);
-            _context.PurchaseHistories.Remove(purchaseHistory);
-            _context.SaveChanges();
-
+            _purchaseHistoriesService.DeletePurchaseHistory(PurchaseHistoryId);
             return Ok();
+        }
+
+        [HttpPost("Buy")]
+        public ActionResult<PurchaseHistoryDTO> BuyPlant(PurchaseHistoryDTO purchaseHistoryDTO)
+        {
+            try
+            {
+                var purchaseHistory = _purchaseHistoriesService.BuyPlant(purchaseHistoryDTO.PlantId, purchaseHistoryDTO.UserId, purchaseHistoryDTO.Quantity);
+                return Ok(purchaseHistory);
+            }
+            catch (Exception e)
+            {
+                if (e.Message == "Plant not found" || e.Message == "User not found")
+                {
+                    return NotFound(e.Message);
+                }
+                else
+                {
+                    throw;
+                }
+            }
         }
     }
 }

@@ -11,7 +11,7 @@ using ProjectTwo.Data;
 namespace PlantShopTwo.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240611195618_InitialCreate")]
+    [Migration("20240611201628_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

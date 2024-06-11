@@ -30,6 +30,10 @@ namespace ProjectTwo.Controllers
         public ActionResult<UserDTO> GetUserById(int UserId)
         {
             var user = _usersService.GetUserById(UserId);
+            if (user == null)
+            {
+                return NotFound();
+            }
             return Ok(user);
         }
 
@@ -37,21 +41,37 @@ namespace ProjectTwo.Controllers
         public ActionResult<UserDTO> AddUser(UserDTO userDto)
         {
             var user = _usersService.AddUser(userDto);
-            return Ok(user);
+            if (user == null)
+            {
+                return BadRequest("Username already exists");
+            }
+            else
+            {
+                return Created();
+            }
         }
 
         [HttpPut("{UserId}")]
         public ActionResult<UserDTO> UpdateUser(int UserId, UserDTO UpdatedUser)
         {
             var user = _usersService.UpdateUser(UserId, UpdatedUser);
+            if (user == null)
+            {
+                return NotFound();
+            }
             return Ok(user);
         }
 
         [HttpDelete("{UserId}")]
         public IActionResult DeleteUser(int UserId)
         {
-            _usersService.DeleteUser(UserId);
-            return Ok();
+            int idReturned = _usersService.DeleteUser(UserId);
+
+            if (idReturned == -1)
+            {
+                return NotFound();
+            }
+            return NoContent();
         }
 
         [HttpPost("Login")]
@@ -59,7 +79,7 @@ namespace ProjectTwo.Controllers
         {
             try
             {
-                var user = _usersService.LoginUser( userloginDto);
+                var user = _usersService.LoginUser(userloginDto);
                 return Ok(user);
             }
             catch (Exception e)
@@ -71,6 +91,6 @@ namespace ProjectTwo.Controllers
                 throw;
             }
         }
-        
+
     }
 }

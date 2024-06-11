@@ -8,7 +8,7 @@ namespace ProjectTwo.Services
         UserDTO GetUserById(int UserId);
         UserDTO AddUser(UserDTO userDTO);
         UserDTO UpdateUser(int UserId, UserDTO userDTO);
-        void DeleteUser(int UserId);
+        int DeleteUser(int UserId);
 
         UserDTO LoginUser(UserLoginDTO userLogin);
     }

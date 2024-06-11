@@ -10,6 +10,6 @@ namespace ProjectTwo.Services
         UserDTO UpdateUser(int UserId, UserDTO userDTO);
         void DeleteUser(int UserId);
 
-        UserDTO LoginUser(string userName, string password);
+        UserDTO LoginUser(UserLoginDTO userLogin);
     }
 }

@@ -1,5 +1,10 @@
+using Microsoft.EntityFrameworkCore;
+
 namespace ProjectTwo.Models
 {
+[Index(nameof(UserName), IsUnique = true)]
+
+
     public class User
     {
         public int UserId { get; set; }

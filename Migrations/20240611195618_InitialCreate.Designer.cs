@@ -11,7 +11,7 @@ using ProjectTwo.Data;
 namespace PlantShopTwo.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240607201942_InitialCreate")]
+    [Migration("20240611195618_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -94,9 +94,13 @@ namespace PlantShopTwo.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("UserId");
+
+                    b.HasIndex("UserName")
+                        .IsUnique()
+                        .HasFilter("[UserName] IS NOT NULL");
 
                     b.ToTable("Users");
                 });

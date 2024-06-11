@@ -64,21 +64,35 @@ namespace ProjectTwo.Services
             return users;
         }
 
-        public UserDTO LoginUser(string userName, string password)
+        public UserDTO LoginUser(UserLoginDTO userLogin)
         {
-            IEnumerable<UserDTO> allUsers = GetUsers();
-            foreach (UserDTO user in allUsers)
+            var user = _context.Users.FirstOrDefault(u => u.UserName == userLogin.UserName && u.Password == userLogin.Password);
+            if (user == null)
             {
-                // if we get a match, they login by returning that user
-                if (user.UserName == userName && user.Password == password)
-                {
-                    // Yay! login!
-                    return user; // us returning the user will indicate success
-                }
+                return null; // Indicate failure to find the user
             }
 
-            throw new Exception("Invalid UserName / Password combo. Please try again.");
+            // Convert the User entity to a UserDTO
+            var userDto = ConvertUserToUserDTO(user);
+
+            return userDto;
         }
+
+        // Method to convert a User entity to a UserDTO
+        private UserDTO ConvertUserToUserDTO(User user)
+        {
+            return new UserDTO
+            {
+                UserId = user.UserId,
+                UserName = user.UserName,
+                Password = user.Password,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+
+            };
+        }
+
+
 
         public UserDTO UpdateUser(int UserId, UserDTO userDTO)
         {

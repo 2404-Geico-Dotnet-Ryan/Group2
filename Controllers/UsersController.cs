@@ -55,11 +55,11 @@ namespace ProjectTwo.Controllers
         }
 
         [HttpPost("Login")]
-        public ActionResult<UserDTO> LoginUser(UserDTO userDto)
+        public ActionResult<UserDTO> LoginUser(UserLoginDTO userloginDto)
         {
             try
             {
-                var user = _usersService.LoginUser(userDto.UserName, userDto.Password);
+                var user = _usersService.LoginUser( userloginDto);
                 return Ok(user);
             }
             catch (Exception e)
@@ -71,5 +71,6 @@ namespace ProjectTwo.Controllers
                 throw;
             }
         }
+        
     }
 }

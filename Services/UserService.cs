@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using ProjectTwo.Data;
 using ProjectTwo.DTOs;
 using ProjectTwo.Models;
@@ -15,24 +16,34 @@ namespace ProjectTwo.Services
 
         public UserDTO AddUser(UserDTO userDTO)
         {
-            var user = new User
-            {
-                UserName = userDTO.UserName,
-                Password = userDTO.Password,
-                FirstName = userDTO.FirstName,
-                LastName = userDTO.LastName,
-            };
+            // Convert the UserDTO to a User entity
+            var checkUser = GetUserByUsername(userDTO.UserName);
 
-            _context.Users.Add(user);
-            _context.SaveChanges();
-            return userDTO;
+            if (checkUser == null)
+            {
+                var user = ConvertUserDTOToUser(userDTO);
+                _context.Users.Add(user);
+                _context.SaveChangesAsync();
+
+                // Return the original UserDTO
+                return userDTO;
+            }
+            else
+            {
+                return null;
+            }
         }
 
-        public void DeleteUser(int UserId)
+        public int DeleteUser(int UserId)
         {
             var user = _context.Users.FirstOrDefault(u => u.UserId == UserId);
+            if (user == null)
+            {
+                return -1;
+            }
             _context.Users.Remove(user);
             _context.SaveChanges();
+            return UserId;
         }
 
         public UserDTO GetUserById(int UserId)
@@ -91,7 +102,17 @@ namespace ProjectTwo.Services
 
             };
         }
-
+        private User ConvertUserDTOToUser(UserDTO userDto)
+        {
+            return new User
+            {
+                UserId = userDto.UserId,
+                UserName = userDto.UserName,
+                Password = userDto.Password,
+                FirstName = userDto.FirstName,
+                LastName = userDto.LastName,
+            };
+        }
 
 
         public UserDTO UpdateUser(int UserId, UserDTO userDTO)
@@ -107,6 +128,22 @@ namespace ProjectTwo.Services
             _context.SaveChanges();
 
             return userDTO;
+        }
+
+        public ActionResult<UserDTO> GetUserByUsername(string userName)
+        {
+            // Find the user by username
+            var user = _context.Users.FirstOrDefault(u => u.UserName == userName);
+
+            if (user == null)
+            {
+                return null; // Indicate failure to find the user
+            }
+
+            // Convert the User entity to a UserDTO
+            var userDto = ConvertUserToUserDTO(user);
+
+            return userDto;
         }
     }
 }

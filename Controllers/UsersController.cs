@@ -76,7 +76,7 @@ namespace ProjectTwo.Controllers
             return NoContent();
         }
 
-        [HttpPost("Login")]
+        [HttpPost("login")]
         public ActionResult<UserDTO> LoginUser(UserLoginDTO userloginDto)
         {
             try

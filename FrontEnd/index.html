@@ -1,19 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>The One Plant Shop</title>
+
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <div id="user-authorization-container">
-        
+  <div class="float-container">
+    <input type="checkbox" id="check">
+    <div class="float-login form">
+      <header>Login</header>
+      <form action="#">
+        <input type="text" placeholder="Enter your UserName">
+        <input type="password" placeholder="Enter your password">
+        <input type="button" class="button" value="Login">
+      </form>    
     </div>
-
-    <div id="home-page-container">
-        
+    <div class="float-registration form">
+      <header>Signup</header>
+      <form action="#">
+        <input type="text" placeholder="Enter your First Name">
+        <input type="password" placeholder="Enter Your Last Name">
+        <input type="password" placeholder="Enter your UserName">
+        <input type="password" placeholder="Enter your Password">
+        <input type="button" class="button" value="Signup">
+      </form>
+      </div>
     </div>
-    <script type="text/javascript" src="script.js"></script>
+  </div>
 </body>
 </html>

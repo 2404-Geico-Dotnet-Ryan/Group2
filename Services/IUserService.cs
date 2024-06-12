@@ -9,7 +9,7 @@ namespace ProjectTwo.Services
         UserDTO AddUser(UserDTO userDTO);
         UserDTO UpdateUser(int UserId, UserDTO userDTO);
         int DeleteUser(int UserId);
-
+        
         UserDTO LoginUser(UserLoginDTO userLogin);
     }
 }

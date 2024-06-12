@@ -37,6 +37,8 @@ namespace ProjectTwo.Controllers
             return Ok(user);
         }
 
+    
+
         [HttpPost]
         public ActionResult<UserDTO> AddUser(UserDTO userDto)
         {
@@ -47,7 +49,7 @@ namespace ProjectTwo.Controllers
             }
             else
             {
-                return Created();
+                return Ok();
             }
         }
 

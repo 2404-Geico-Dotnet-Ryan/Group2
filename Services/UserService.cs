@@ -17,13 +17,13 @@ namespace ProjectTwo.Services
         public UserDTO AddUser(UserDTO userDTO)
         {
             // Convert the UserDTO to a User entity
-            var checkUser = GetUserByUsername(userDTO.UserName);
+            var checkUser = GetUserByUserName(userDTO.UserName);
 
             if (checkUser == null)
             {
                 var user = ConvertUserDTOToUser(userDTO);
                 _context.Users.Add(user);
-                _context.SaveChangesAsync();
+                _context.SaveChanges();
 
                 // Return the original UserDTO
                 return userDTO;
@@ -130,7 +130,7 @@ namespace ProjectTwo.Services
             return userDTO;
         }
 
-        public ActionResult<UserDTO> GetUserByUsername(string userName)
+        public ActionResult<UserDTO> GetUserByUserName(string userName)
         {
             // Find the user by username
             var user = _context.Users.FirstOrDefault(u => u.UserName == userName);
@@ -145,5 +145,7 @@ namespace ProjectTwo.Services
 
             return userDto;
         }
+
+       
     }
 }

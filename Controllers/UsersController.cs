@@ -49,7 +49,7 @@ namespace ProjectTwo.Controllers
             }
             else
             {
-                return Ok();
+                return Ok(user);
             }
         }
 

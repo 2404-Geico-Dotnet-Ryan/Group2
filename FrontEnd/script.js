@@ -92,6 +92,7 @@ async function LoginUser(userName, password) {
 
     console.log(current_user);
     TeardownLoginContainer()
+    GenerateTeardownRegistrationContainer()
     //generateHomePageContainer(data);
     // console.log(data);
   } catch (e) {
@@ -122,7 +123,7 @@ function GenerateRegistrationContainer() {
     // Create the username input field and label
   let userNameInput = document.createElement('input');
   userNameInput.type = 'text';
-  userNameInput.id = 'userName-input';
+  userNameInput.id = 'registration-userName-input';
 
   let userNameInputLabel = document.createElement('label');
   userNameInputLabel.textContent = "UserName";
@@ -130,7 +131,7 @@ function GenerateRegistrationContainer() {
   // Create the password input field and label
   let passwordInput = document.createElement('input');
   passwordInput.type = 'password';
-  passwordInput.id = 'password-input';
+  passwordInput.id = 'registration-password-input';
 
   let passwordInputLabel = document.createElement('label');
   passwordInputLabel.textContent = "Password";
@@ -185,8 +186,8 @@ function GenerateTeardownRegistrationContainer() {
 }
 
 function CreateNewUserInformation() {
-  let userName = document.querySelector("#userName-input").value;
-  let password = document.querySelector("#password-input").value;
+  let userName = document.querySelector("#registration-userName-input").value;
+  let password = document.querySelector("#registration-password-input").value;
   let firstName = document.querySelector("#firstName-input").value;
   let lastName = document.querySelector("#lastName-input").value;
 
@@ -214,7 +215,7 @@ async function RegisterUser(userName, password, firstName, lastName) {
     current_user = data;
 
     console.log(current_user);
-   // TeardownRegistrationContainer()
+    GenerateTeardownRegistrationContainer()
     //generateHomePageContainer(data);
     console.log(data);
   } catch (e) {

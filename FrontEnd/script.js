@@ -20,6 +20,11 @@ function GenerateLoginContainer() {
   let loginDiv = document.createElement("div");
   loginDiv.id = "login-container";
   loginDiv.className = "float-login form";
+
+  //Label
+  let loginHeader = document.createElement("h2");
+  loginHeader.textContent = "Login";
+  loginDiv.appendChild(loginHeader);
   // Create the username input field and label
   let userNameInput = document.createElement('input');
   userNameInput.type = 'text';
@@ -120,7 +125,12 @@ function GenerateRegistrationContainer() {
   registrationDiv.id = "registration-container";
   registrationDiv.className = "float-registration form";
 
-    // Create the username input field and label
+  //Label
+  let registrationHeader = document.createElement("h2");
+  registrationHeader.textContent = "Register";
+  registrationDiv.appendChild(registrationHeader);
+
+  // Create the username input field and label
   let userNameInput = document.createElement('input');
   userNameInput.type = 'text';
   userNameInput.id = 'registration-userName-input';
@@ -226,13 +236,79 @@ async function RegisterUser(userName, password, firstName, lastName) {
 GenerateRegistrationContainer()
 
 const homepageContainer = document.querySelector("#homepage-container");
-function GenerateInventoryContainer() {
-
-}
-
 function GeneratePurchaseContainer() {
 
+  let purchaseContainerDiv = document.createElement("div");
+
+  purchaseContainerDiv.id = "Purchase-container";
+  purchaseContainerDiv.className = "float-Purchase list";
+  let purchaseHeader = document.createElement("h3");
+  purchaseHeader.textContent = "Checkout";
+  let purchaseDescription = document.createElement("p");
+  purchaseDescription.textContent = "Please select which plant you'd like to purchase from the Plant List below.";
+
+  
+  let dropdown = document.createElement("select");
+  dropdown.length = 0;
+
+
+  let defaultOption = document.createElement("option");
+  defaultOption.text = 'Choose Plant';
+
+  dropdown.add(defaultOption);
+  dropdown.selectedIndex = 0;
+
+  homepageContainer.appendChild(purchaseContainerDiv);
+  purchaseContainerDiv.appendChild(purchaseHeader);
+  purchaseContainerDiv.appendChild(purchaseDescription);
+  purchaseContainerDiv.appendChild(dropdown);
+
+  // fetch(url)  
+  //   .then(  
+  //     function(response) {  
+  //       if (response.status !== 200) {  
+  //         console.warn('Looks like there was a problem. Status Code: ', 
+  //           response.status);  
+  //         return;  
+  //       }
+
+  //       // Examine the text in the response  
+  //       response.json().then(function(data) {  
+  //         let option;
+
+  //         for (let i = 0; i < data.length; i++) {
+  //           option = document.createElement('option');
+  //           option.text = data[i].name;
+  //           option.value = data[i].abbreviation;
+  //           dropdown.add(option);
+  //         }    
+  //       });  
+  //   }  
+  // )  
+  // .catch(function(err) {  
+  //   console.error('Fetch Error -', err);  
+  // });
+  purchaseContainerDiv.appendChild(dropdown);
 }
+GeneratePurchaseContainer();
+
+//   <div id="Purchase-container"> </div>
+//   <div> <div id="Purchase-container" class="float-Purchase list">
+//     <header>Checkout</header>
+//     <p>Please select which plant you'd like to purchase from the Plant List below. </p>
+//   <body>
+//     <div class="col-md-4">
+//     <form>
+//     <h4>Plant List</h4>
+//     <select class="form-control"  id='firstList' name='firstList' onClick="getPlants()">
+//     </select>
+//     <form action="#"></form>
+//     <input type="button" class="button" value="Purchase">
+
+// </div>
+
+
+
 
 function GenerateMenuContainer() {
 

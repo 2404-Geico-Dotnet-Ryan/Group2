@@ -104,3 +104,44 @@ body{
 .signup label:hover{
   text-decoration: underline;
 }
+/*This is for the images*/
+
+* {margin: 100; padding: 100;}
+ 
+div {
+  margin: 20px;
+  width: 500px;
+  background: #eee;
+}
+header {
+  font: bold 60px/1.5 Helvetica, Verdana, sans-serif;
+}
+ 
+ul {
+  list-style-type: none;
+  width: 500px;
+}
+ 
+h3 {
+  font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
+}
+ 
+li img {
+  float: left;
+  margin: 0 15px 0 0;
+}
+ 
+li p {
+  font: 1200 12px/1.5 Georgia, Times New Roman, serif;
+}
+ 
+li {
+  padding: 10px;
+  overflow: auto;
+}
+ 
+li:hover {
+  background: #eee;
+  cursor: pointer;
+}
+

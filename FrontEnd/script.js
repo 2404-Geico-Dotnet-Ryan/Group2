@@ -235,8 +235,30 @@ async function RegisterUser(userName, password, firstName, lastName) {
 
 GenerateRegistrationContainer()
 
+//List of plants
+async function GetAllPlants(){
+  try {
+    let response = await fetch(`${BASE_URL}/Plants`, {
+      method: "GET",
+      headers: {
+        'Content-Type': "application/json"
+      },
+    });
+
+
+    const plants = await response.json();
+    return plants
+  } catch (e) {
+    console.error("Error getting plants:", e);
+  }
+}
+
+
+
+
+
 const homepageContainer = document.querySelector("#homepage-container");
-function GeneratePurchaseContainer() {
+async function GeneratePurchaseContainer() {
 
   let purchaseContainerDiv = document.createElement("div");
 
@@ -255,8 +277,23 @@ function GeneratePurchaseContainer() {
   let defaultOption = document.createElement("option");
   defaultOption.text = 'Choose Plant';
 
+  //make call to get plants
+  const plants = await GetAllPlants();
+
+
+
   dropdown.add(defaultOption);
   dropdown.selectedIndex = 0;
+
+//get options 
+for (let i = 0; i < plants.length; i++) {
+           option = document.createElement('option');
+           option.text = plants[i].plantName;
+           option.value = plants[i].plantId;
+        dropdown.add(option);
+}
+
+
 
   homepageContainer.appendChild(purchaseContainerDiv);
   purchaseContainerDiv.appendChild(purchaseHeader);

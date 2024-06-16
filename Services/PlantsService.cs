@@ -62,6 +62,7 @@ namespace ProjectTwo.Services
                 //.Include(p => p.PurchaseHistory)
                 .Select(p => new PlantDTO
                 {
+                    PlantId = p.PlantId,
                     PlantName = p.PlantName,
                     Price = p.Price,
                     Quantity = p.Quantity

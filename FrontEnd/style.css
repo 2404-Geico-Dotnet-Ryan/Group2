@@ -11,11 +11,19 @@ body{
   width: 100%;
   background: #009579;
 }
+
+.homepage { 
+    display: flex; 
+    justify-content: space-between;
+    padding: 50px;
+    width: 100%;
+    }
+
 /* .float-container {
     border: 3px solid #fff;
     padding: 20px;
 }
-
+ 
 .float-child {
     width: 50%;
     float: left;

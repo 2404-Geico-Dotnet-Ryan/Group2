@@ -118,7 +118,7 @@ async function LoginUser(userName, password) {
 
     //Generate Purchase container
     GeneratePurchaseContainer();
-    
+
 
 
     //generateHomePageContainer(data);
@@ -213,9 +213,9 @@ function TeardownRegistrationContainer() {
   // If the login container exists, remove all its children
   if (registrationDiv != null) {
     //while (registrationDiv.firstChild) {
-      //registrationDiv.firstChild.remove();
-   //}
-   registrationDiv.remove();
+    //registrationDiv.firstChild.remove();
+    //}
+    registrationDiv.remove();
   }
 }
 
@@ -260,7 +260,7 @@ async function RegisterUser(userName, password, firstName, lastName) {
 GenerateRegistrationContainer()
 
 //List of plants
-async function GetAllPlants(){
+async function GetAllPlants() {
   try {
     let response = await fetch(`${BASE_URL}/Plants`, {
       method: "GET",
@@ -283,6 +283,8 @@ async function GetAllPlants(){
 
 const homepageContainer = document.querySelector("#homepage-container");
 async function GeneratePurchaseContainer() {
+  //TeardownPurchaseContainer()
+  TeardownPurchaseHistoryContainer()
 
   let purchaseContainerDiv = document.createElement("div");
 
@@ -293,7 +295,7 @@ async function GeneratePurchaseContainer() {
   let purchaseDescription = document.createElement("p");
   purchaseDescription.textContent = "Please select which plant you'd like to purchase from the Plant List below.";
 
-  
+
   let dropdown = document.createElement("select");
   dropdown.length = 0;
 
@@ -308,75 +310,75 @@ async function GeneratePurchaseContainer() {
 
   dropdown.add(defaultOption);
   dropdown.selectedIndex = 0;
- console.log(plants);
-//get options 
-for (let i = 0; i < plants.length; i++) {
-           option = document.createElement('option');
-           option.text = plants[i].plantName;
-           option.value = plants[i].plantId;
-        dropdown.add(option);
-}
+  console.log(plants);
+  //get options 
+  for (let i = 0; i < plants.length; i++) {
+    option = document.createElement('option');
+    option.text = plants[i].plantName;
+    option.value = plants[i].plantId;
+    dropdown.add(option);
+  }
 
-//Purchase button and message and click
-const messageElement = document.createElement("p");
-const buyButton = document.createElement("button");
-buyButton.textContent = "Purchase";
-buyButton.addEventListener("click", async function(){
-  const plantId = parseInt(dropdown.value);
-  const quantity = 1;
-  const plant = plants.find(plant => plant.plantId == plantId);
-  const price = plant.price;
-  const userId = current_user.userId;
-  const purchaseHistory = await BuyPlant(userId, plantId, quantity, price);
-  const message = `You have purchased ${quantity} ${plant.plantName} for $${purchaseHistory.price}.00`;
-  messageElement.textContent = message;
-});
+  //Purchase button and message and click
+  const messageElement = document.createElement("p");
+  const buyButton = document.createElement("button");
+  buyButton.textContent = "Purchase";
+  buyButton.addEventListener("click", async function () {
+    const plantId = parseInt(dropdown.value);
+    const quantity = 1;
+    const plant = plants.find(plant => plant.plantId == plantId);
+    const price = plant.price;
+    const userId = current_user.userId;
+    const purchaseHistory = await BuyPlant(userId, plantId, quantity, price);
+    const message = `You have purchased ${quantity} ${plant.plantName} for $${purchaseHistory.price}.00`;
+    messageElement.textContent = message;
+  });
 
 
-//keys match the plant names in database - add link to image when plants added to database
-const plantImages = {
-  "Casa Blanca Lily": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaNrKV8XQjT4zN7ZR92NzY5nJWLg2_fy6Ycg&s",
-  "Stargazer Lily": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcT9g6npvWboQc6OMxuSAdNaIwJPoq--nSnnTQtwJnH94pGhCrvDLp85DyTHyE6HbLgVSbkxMbBP0h79tPlP25AYbhyx4C1DCQi0SpZ9M0EE&usqp=CAc",
- "Sarah Bernhardt Peony": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQHFGtvgRKtk9Cjranm6Th7sDCxZKT2920I9zWKCu1T4AJr9uV87YU_IrQvuvL3QCndeVHF5O-QnoqpGiK_sQf3fjcmRnsraS3G7clVGME&usqp=CAc",
- "Elsa Sass Peony": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQTXngv3_j6UbbDQaPwU2qgtwVFBpu9M4XVSyorHEsc3OYVRUrrW116hpMJNTBEPJLIAC4clD-0CcDi-eivj2n7VtktYh3RqvA7mVCryvmn&usqp=CAc",
- }
+  //keys match the plant names in database - add link to image when plants added to database
+  const plantImages = {
+    "Casa Blanca Lily": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaNrKV8XQjT4zN7ZR92NzY5nJWLg2_fy6Ycg&s",
+    "Stargazer Lily": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcT9g6npvWboQc6OMxuSAdNaIwJPoq--nSnnTQtwJnH94pGhCrvDLp85DyTHyE6HbLgVSbkxMbBP0h79tPlP25AYbhyx4C1DCQi0SpZ9M0EE&usqp=CAc",
+    "Sarah Bernhardt Peony": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQHFGtvgRKtk9Cjranm6Th7sDCxZKT2920I9zWKCu1T4AJr9uV87YU_IrQvuvL3QCndeVHF5O-QnoqpGiK_sQf3fjcmRnsraS3G7clVGME&usqp=CAc",
+    "Elsa Sass Peony": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQTXngv3_j6UbbDQaPwU2qgtwVFBpu9M4XVSyorHEsc3OYVRUrrW116hpMJNTBEPJLIAC4clD-0CcDi-eivj2n7VtktYh3RqvA7mVCryvmn&usqp=CAc",
+  }
 
-const plantListDiv = document.createElement('div');
- //Header for container and builds list of plants pulled from API
-let plantsHeader = document.createElement("h1");
-    plantsHeader.textContent = "Plants";
-    plantListDiv.appendChild(plantsHeader);
-const plantListUnorderedList = document.createElement('ul');
-plantListDiv.appendChild(plantListUnorderedList);
-for (i = 0; i < plants.length; i++) {
-  let plant = plants[i];
-  let plantListItem = document.createElement('li');
-  const plantName = document.createElement('h3');
-  plantName.textContent = `${plant.plantName}`
-  const price = document.createElement('p');
-  price.textContent = `$${plant.price}.00`
-  
-  const plantImage = document.createElement('img');
-  plantImage.src = plantImages[plant.plantName];
-  plantImage.width = 200;
-  plantImage.height = 200;
-  
-  
-  plantListItem.appendChild(plantImage);
-  plantListItem.appendChild(plantName);
-  plantListItem.appendChild(price);
-  plantListUnorderedList.appendChild(plantListItem);
-}
- 
-  homepageContainer.appendChild(plantListDiv);  
-//Purchase button and message
+  const plantListDiv = document.createElement('div');
+  //Header for container and builds list of plants pulled from API
+  let plantsHeader = document.createElement("h1");
+  plantsHeader.textContent = "Plants";
+  plantListDiv.appendChild(plantsHeader);
+  const plantListUnorderedList = document.createElement('ul');
+  plantListDiv.appendChild(plantListUnorderedList);
+  for (i = 0; i < plants.length; i++) {
+    let plant = plants[i];
+    let plantListItem = document.createElement('li');
+    const plantName = document.createElement('h3');
+    plantName.textContent = `${plant.plantName}`
+    const price = document.createElement('p');
+    price.textContent = `$${plant.price}.00`
+
+    const plantImage = document.createElement('img');
+    plantImage.src = plantImages[plant.plantName];
+    plantImage.width = 200;
+    plantImage.height = 200;
+
+
+    plantListItem.appendChild(plantImage);
+    plantListItem.appendChild(plantName);
+    plantListItem.appendChild(price);
+    plantListUnorderedList.appendChild(plantListItem);
+  }
+
+  homepageContainer.appendChild(plantListDiv);
+  //Purchase button and message
   homepageContainer.appendChild(purchaseContainerDiv);
   purchaseContainerDiv.appendChild(purchaseHeader);
   purchaseContainerDiv.appendChild(purchaseDescription);
   purchaseContainerDiv.appendChild(dropdown);
   purchaseContainerDiv.appendChild(buyButton);
   purchaseContainerDiv.appendChild(messageElement);
-    
+
 
   // fetch(url)  
   //   .then(  
@@ -404,7 +406,16 @@ for (i = 0; i < plants.length; i++) {
   //   console.error('Fetch Error -', err);  
   // });
 }
+function TeardownPurchaseContainer(){
 
+  if (purchaseContainer != null) {
+    while (purchaseContainer.firstChild) {
+      purchaseContainer.firstChild.remove();
+
+    }
+  }
+
+}
 
 //   <div id="Purchase-container"> </div>
 //   <div> <div id="Purchase-container" class="float-Purchase list">
@@ -448,52 +459,52 @@ async function OpenPurchaseHistory() {
 
 const purchaseHistoryContainer = document.querySelector("#purchaseHistory-container");
 async function GeneratePurchaseHistoryContainer() {
+  TeardownPurchaseHistoryContainer()
+  const purchaseHistories = await GetPurchaseHistories();
+  //filters history by user
+  const purchaseHistoryForUser = purchaseHistories.filter(purchaseHistory => purchaseHistory.userId === current_user.userId);
+  console.log(purchaseHistoryForUser, purchaseHistories, current_user);
 
-const purchaseHistories = await GetPurchaseHistories();
-//filters history by user
-const purchaseHistoryForUser = purchaseHistories.filter(purchaseHistory => purchaseHistory.userId === current_user.userId);
-console.log(purchaseHistoryForUser, purchaseHistories, current_user);
+  //Chante code for table
+  //creates a <table> element and a d <tbody> element
+  const tbl = document.createElement("table");
+  const tblBody = document.createElement("tbody");
 
-//Chante code for table
-//creates a <table> element and a d <tbody> element
-const tbl = document.createElement("table");
-const tblBody = document.createElement("tbody");
+  //creating all cells
+  for (let i = 0; i < purchaseHistoryForUser.length; i++) {
+    //create a table row
+    const row = document.createElement("tr");
+    const purchaseHistory = purchaseHistories[i];
+    //const data = Object.entries(purchaseHistory);
+    const plant = await GetPlantById(purchaseHistory.plantId);
+    const data = [
+      ["Plant Name", plant.plantName],
+      ["Quantity", purchaseHistory.quantity],
+      ["Purchase Price", purchaseHistory.price],
 
-//creating all cells
-for (let i = 0; i < purchaseHistoryForUser.length; i++) {
-  //create a table row
-  const row = document.createElement("tr");
-  const purchaseHistory = purchaseHistories[i];
-   //const data = Object.entries(purchaseHistory);
-   const plant = await GetPlantById(purchaseHistory.plantId);
-   const data = [
-    ["Plant Name", plant.plantName],
-    ["Quantity", purchaseHistory.quantity],
-    ["Purchase Price" , purchaseHistory.price],
-
-   ]
-  for (let j = 0; j < data.length; j++) {
-    //create a <td> element and a text node,
-    // make the text node the contents of the <td>, 
-    //and put the <td> at the end of the table row
-    const cell = document.createElement("td");
-    const cellText = document.createTextNode(`${data[j][0]} - ${data[j][1]}`);
-    cell.appendChild(cellText);
-    row.appendChild(cell);
+    ]
+    for (let j = 0; j < data.length; j++) {
+      //create a <td> element and a text node,
+      // make the text node the contents of the <td>, 
+      //and put the <td> at the end of the table row
+      const cell = document.createElement("td");
+      const cellText = document.createTextNode(`${data[j][0]} - ${data[j][1]}`);
+      cell.appendChild(cellText);
+      row.appendChild(cell);
+    }
+    //add the row to the end of the table body
+    tblBody.appendChild(row);
   }
-  //add the row to the end of the table body
-  tblBody.appendChild(row);
-}
-const headerElement = document.createElement("h1");
-headerElement.textContent = "Your Purchase History";
-purchaseHistoryContainer.appendChild(headerElement);
-purchaseHistoryContainer.appendChild(tbl);
-//put the <tbody> in the <table>
-tbl.appendChild(tblBody);
-//appends <table> into <body>
-homepageContainer.appendChild(purchaseHistoryContainer);
-//sets the border attribute of tbl to 2;
-tbl.setAttribute("border", "2");
+  const headerElement = document.createElement("h1");
+  headerElement.textContent = "Your Purchase History";
+  purchaseHistoryContainer.appendChild(headerElement);
+  purchaseHistoryContainer.appendChild(tbl);
+  //put the <tbody> in the <table>
+  tbl.appendChild(tblBody);
+  //appends <table> into <body>
+  homepageContainer.appendChild(purchaseHistoryContainer);
+  //sets the border attribute of tbl to 2;
+  tbl.setAttribute("border", "2");
 
 
 
@@ -505,62 +516,89 @@ tbl.setAttribute("border", "2");
 //GeneratePurchaseHistoryContainer();
 
 
-  async function GetPurchaseHistories(){
-    try {
-      let response = await fetch(`${BASE_URL}/PurchaseHistories`, {
-        method: "GET",
-        headers: {
-          'Content-Type': "application/json"
-        },
-      });
-  
-  
-      const purchaseHistories = await response.json();
-      return purchaseHistories
-    } catch (e) {
-      console.error("Error getting purchase histories:", e);
-    }
+async function GetPurchaseHistories() {
+  try {
+    let response = await fetch(`${BASE_URL}/PurchaseHistories`, {
+      method: "GET",
+      headers: {
+        'Content-Type': "application/json"
+      },
+    });
+
+
+    const purchaseHistories = await response.json();
+    return purchaseHistories
+  } catch (e) {
+    console.error("Error getting purchase histories:", e);
+  }
+}
+
+async function GetPlantById(plantId) {
+  try {
+    let response = await fetch(`${BASE_URL}/Plants/${plantId}`, {
+      method: "GET",
+      headers: {
+        'Content-Type': "application/json"
+      },
+    });
+
+
+    const plant = await response.json();
+    return plant
+  } catch (e) {
+    console.error("Error getting plant:", e);
+  }
+}
+
+async function BuyPlant(userId, plantId, quantity, price) {
+  try {
+    let response = await fetch(`${BASE_URL}/PurchaseHistories/`, {
+      method: "POST",
+      headers: {
+        'Content-Type': "application/json"
+      },
+      body: JSON.stringify({
+        "userId": userId,
+        "plantId": plantId,
+        "quantity": quantity,
+        "price": price
+      }),
+    });
+
+
+    const purchaseHistory = await response.json();
+    return purchaseHistory
+  } catch (e) {
+    console.error("Error buying plant:", e);
   }
 
-  async function GetPlantById(plantId){
-    try {
-      let response = await fetch(`${BASE_URL}/Plants/${plantId}`, {
-        method: "GET",
-        headers: {
-          'Content-Type': "application/json"
-        },
-      });
-  
-  
-      const plant = await response.json();
-      return plant
-    } catch (e) {
-      console.error("Error getting plant:", e);
-    }
-  }
 
-  async function BuyPlant(userId, plantId, quantity, price){
-    try {
-      let response = await fetch(`${BASE_URL}/PurchaseHistories/`, {
-        method: "POST",
-        headers: {
-          'Content-Type': "application/json"
-        },
-        body: JSON.stringify({
-          "userId": userId,
-          "plantId": plantId,
-          "quantity": quantity,
-          "price": price
-        }),
-      });
-  
-  
-      const purchaseHistory = await response.json();
-      return purchaseHistory
-    } catch (e) {
-      console.error("Error buying plant:", e);
+}
+function TeardownPurchaseHistoryContainer() {
+
+
+  // If the purchase container is not null, remove all its children
+  if (purchaseHistoryContainer != null) {
+    while (purchaseHistoryContainer.firstChild) {
+      purchaseHistoryContainer.firstChild.remove();
+
     }
   }
+}
+function RedisplayPurchaseContainer(){
+  //TeardownPurchaseContainer()
+  TeardownPurchaseHistoryContainer()
+  GeneratePurchaseContainer()
+}
+
+function LogOutUser() {
+  current_user = {};
+  TeardownHomepageContainer()
+  GenerateLoginContainer()
+  GenerateRegistrationContainer()
+}
+
+
 
 
 

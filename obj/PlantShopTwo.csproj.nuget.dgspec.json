@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Revature\\Project2Group\\Group2\\PlantShopTwo.csproj": {}
+    "C:\\Revature - GayleR\\Group2\\PlantShopTwo.csproj": {}
   },
   "projects": {
-    "C:\\Revature\\Project2Group\\Group2\\PlantShopTwo.csproj": {
+    "C:\\Revature - GayleR\\Group2\\PlantShopTwo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Revature\\Project2Group\\Group2\\PlantShopTwo.csproj",
+        "projectUniqueName": "C:\\Revature - GayleR\\Group2\\PlantShopTwo.csproj",
         "projectName": "PlantShopTwo",
-        "projectPath": "C:\\Revature\\Project2Group\\Group2\\PlantShopTwo.csproj",
-        "packagesPath": "C:\\dev\\nuget\\packages",
-        "outputPath": "C:\\Revature\\Project2Group\\Group2\\obj\\",
+        "projectPath": "C:\\Revature - GayleR\\Group2\\PlantShopTwo.csproj",
+        "packagesPath": "C:\\Users\\U1C066\\.nuget\\packages\\",
+        "outputPath": "C:\\Revature - GayleR\\Group2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\U1C073\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\U1C066\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"

@@ -341,6 +341,12 @@ async function GeneratePurchaseContainer() {
     "Stargazer Lily": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcT9g6npvWboQc6OMxuSAdNaIwJPoq--nSnnTQtwJnH94pGhCrvDLp85DyTHyE6HbLgVSbkxMbBP0h79tPlP25AYbhyx4C1DCQi0SpZ9M0EE&usqp=CAc",
     "Sarah Bernhardt Peony": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQHFGtvgRKtk9Cjranm6Th7sDCxZKT2920I9zWKCu1T4AJr9uV87YU_IrQvuvL3QCndeVHF5O-QnoqpGiK_sQf3fjcmRnsraS3G7clVGME&usqp=CAc",
     "Elsa Sass Peony": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQTXngv3_j6UbbDQaPwU2qgtwVFBpu9M4XVSyorHEsc3OYVRUrrW116hpMJNTBEPJLIAC4clD-0CcDi-eivj2n7VtktYh3RqvA7mVCryvmn&usqp=CAc",
+    "Purple Bearded Iris" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSeb6D4Th4E6aunwxQOPLrDSInBPcLXTGAGQ&usqp=CAU",
+    "Gardenia" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9QTHpskUGn_GTHoQnrBzKAJxVdiAL_qHH_A&usqp=CAU",
+    "ZZ Plant" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkWDsUlDh-7tGToc9DJ16ccTHgL6ECDqDfiNOrWFO-t_aZlqGpyjwWcxP9bVpI1PM7hLI&usqp=CAU",
+    "Bamboo" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSf-iStIsxpw2cr91-iVbr0Ye9vGyxfb3LSA&usqp=CAU",
+    "Purple Orchid" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0geQo3_J_dHHKOejFR2E-F961lBdBTlOqaQ&usqp=CAU",
+    "Fiddle-Leaf Fig" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKwUHQ6Y6yJc0NpFYbUiogHb1gcxD59WE7bQ&usqp=CAU",
   }
 
   const plantListDiv = document.createElement('div');
@@ -406,6 +412,7 @@ async function GeneratePurchaseContainer() {
   //   console.error('Fetch Error -', err);  
   // });
 }
+
 function TeardownPurchaseContainer(){
 
   if (purchaseContainer != null) {

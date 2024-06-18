@@ -458,6 +458,10 @@ function TeardownHomepageContainer() {
 }
 
 async function OpenPurchaseHistory() {
+  if (JSON.stringify(current_user) == '{}') {
+    // If we're not logged in, don't do anything
+    return;
+  }
   // Tear down current container (purchase container)
   TeardownHomepageContainer();
   // Generate purchase history container
@@ -593,12 +597,21 @@ function TeardownPurchaseHistoryContainer() {
   }
 }
 function RedisplayPurchaseContainer(){
+  if (JSON.stringify(current_user) == '{}') {
+    // If we're not logged in, don't do anything
+    return;
+  }
+  TeardownHomepageContainer()
   //TeardownPurchaseContainer()
   TeardownPurchaseHistoryContainer()
   GeneratePurchaseContainer()
 }
 
 function LogOutUser() {
+  if (JSON.stringify(current_user) == '{}') {
+    // If we're not logged in, don't do anything
+    return;
+  }
   current_user = {};
   TeardownHomepageContainer()
   GenerateLoginContainer()

@@ -12,6 +12,21 @@ body{
   background: #009579;
 }
 
+/* main header */
+.header{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100px;
+  font-weight: bold;
+  font-size: 30px;
+  margin-top: 0;
+  text-align: center;
+  background: #009579;
+  transition: .3s;
+  padding: 20px;
+}
+
 .homepage { 
     display: flex; 
     justify-content: space-between;

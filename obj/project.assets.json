@@ -4524,11 +4524,14 @@
     ]
   },
   "packageFolders": {
+
     "C:\\Users\\U88ABJ\\.nuget\\packages\\": {}
+
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+
       "projectUniqueName": "C:\\Users\\U88ABJ\\Revature\\Group2\\PlantShopTwo.csproj",
       "projectName": "PlantShopTwo",
       "projectPath": "C:\\Users\\U88ABJ\\Revature\\Group2\\PlantShopTwo.csproj",
@@ -4537,6 +4540,7 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\U88ABJ\\AppData\\Roaming\\NuGet\\NuGet.Config"
+
       ],
       "originalTargetFrameworks": [
         "net8.0"

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,9 +9,10 @@
 
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <div id="user-container" class="float-container"> </div>
-    <!-- <input type="checkbox" id="check">
+  <!-- <input type="checkbox" id="check">
     <div id="login-container" class="float-login form">
       <header>Login</header>
       <form action="#">
@@ -30,58 +32,43 @@
       </form>
       </div>
     </div> -->
-  </div>
+
 
   <!-- page header -->
+  <!-- HTML-  page header -->
   <html>
-      <head>
-        <title>Fixed Header</title>
-        <link rel="stylesheet" href="style.css">
-      </head>
-      <body>
-        <div class = "header">
-          <h1>The One Plant Shop</h1>
-        </div>
-      </body>
-   </html>
 
+  <head>
+    <title>Fixed Header</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
 
-    <div id="homepage-container" class="homepage"> </div>
-    <div> <div id="homepage-container" class="float-homepage list">
-      <!-- <header>Flowers</header>
+  <body>
+    <div class="header">
+      <h1>The One Plant Shop</h1>
+      <link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
       <ul>
-        <li>
-          <img src="data:image/jpeg;base64,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" />
-          <h3>Casa Blanca Lily</h3>
-          <p>Description...</p>
-          <p>10.00</p>
-        </li>
-           
-        <li>
-          <img src=https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQTXngv3_j6UbbDQaPwU2qgtwVFBpu9M4XVSyorHEsc3OYVRUrrW116hpMJNTBEPJLIAC4clD-0CcDi-eivj2n7VtktYh3RqvA7mVCryvmn&usqp=CAc />
-          <h3>Elsa Sass Peony</h3>
-          <p>Description....</p>
-          <p>10.00</p>
-        </li>
-     
-        <li>
-          <img src=https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQHFGtvgRKtk9Cjranm6Th7sDCxZKT2920I9zWKCu1T4AJr9uV87YU_IrQvuvL3QCndeVHF5O-QnoqpGiK_sQf3fjcmRnsraS3G7clVGME&usqp=CAc />
-          <h3>Sarah Bernhardt Peony</h3>
-          <p>Description....</p>
-          <p>15.00</p>
-        </li>
-     
-        <li>
-          <img src=https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcT9g6npvWboQc6OMxuSAdNaIwJPoq--nSnnTQtwJnH94pGhCrvDLp85DyTHyE6HbLgVSbkxMbBP0h79tPlP25AYbhyx4C1DCQi0SpZ9M0EE&usqp=CAc />
-          <h3>Stargazer Lily</h3>
-          <p>Description...</p>
-          <p>7.00</p>
-        </li>
-      </ul> -->
+        <li><a href="#" onclick="RedisplayPurchaseContainer()"><i class="fas fa-link"></i>Shop</a></li>
+        <li><a href="#" onclick="OpenPurchaseHistory()"><i class="fas fa-link"></i>Purchase History</a></li>
+        <li><a href="#" onclick="LogOutUser()"><i class="fas fa-link"></i>Logout</a></li>
+      </ul>
+      <!-- <ul1>
+        <li><a href="#" onclick="LogOutUser()"><i class="fas fa-link"></i>Logout</a></li>
+      </ul1> -->
+      </head>
     </div>
-    
-   
-    <!-- <div id="Purchase-container"> </div>
+  </body>
+
+  </html>
+
+
+  <div id="homepage-container" class="homepage"> </div>
+
+  <!-- <div id="homepage-container" class="float-homepage list"> </div> -->
+
+
+  <!-- <div id="Purchase-container"> </div>
     <div> <div id="Purchase-container" class="float-Purchase list">
       <header>Checkout</header>
       <p>Please select which plant you'd like to purchase from the Plant List below. </p>
@@ -96,36 +83,39 @@
     
     
   </div> -->
-   <!-- This is the sidebar code -->
+  <!-- This is the sidebar code -->
 
-   
-    
-   <html lang="en" dir="ltr">
-    <head>
-      <meta charset="utf-8">
-      <title>Sider Menu Bar CSS</title>
-      <link rel="stylesheet" href="style.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-    </head>
-    <body>
-      
-      <div class="sidebar">
+
+
+  <html lang="en" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Sider Menu Bar CSS</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  </head>
+
+  <body>
+
+    <!-- <div class="sidebar">
       <header>One Plant</header>
-      <ul>
+       <ul>
         <li><a href="#" onclick="RedisplayPurchaseContainer()"><i class="fas fa-link"></i>Shop</a></li>
         <li><a href="#" onclick="OpenPurchaseHistory()"><i class="fas fa-link"></i>Purchase History</a></li>
-       <li><a href="#" onclick="LogOutUser()"><i class="fas fa-link"></i>Logout</a></li>
-       
-       </ul>
+        <li><a href="#" onclick="LogOutUser()"><i class="fas fa-link"></i>Logout</a></li>
+
+      </ul> 
      </div>
-     <section></section>
-    </body>
-  </html>
+    <section></section>
+  </body>
+
+  </html> -->
 
     <div id="purchaseHistory-container"> </div>
 
-    
-  <script type="text/javascript" src="script.js"></script>
-</body>
-</html>
 
+    <script type="text/javascript" src="script.js"></script>
+  </body>
+
+  </html>

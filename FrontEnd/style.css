@@ -1,19 +1,21 @@
 /* Import Google font - Poppins */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-*{
+
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
-body{
+
+body {
   min-height: 100vh;
   width: 100%;
   background: #009579;
 }
 
 /* main header */
-.header{
+.header {
   position: fixed;
   top: 0;
   width: 100%;
@@ -27,12 +29,36 @@ body{
   padding: 20px;
 }
 
-.homepage { 
-    display: flex; 
-    justify-content: space-between;
-    padding: 50px;
-    width: 100%;
-    }
+a:link,
+a:visited {
+  background-color: white;
+  color: black;
+  border: 2px solid green;
+  padding: 10px 20px;
+  text-align: right;
+  text-decoration: none;
+  display: flex;
+}
+
+
+i {
+  font-size: 20px;
+}
+
+
+li {
+  font-size: 15px;
+  display: inline-flex;
+
+}
+
+.homepage {
+  display: flex;
+  justify-content: space-between;
+  padding: 50px;
+  width: 100%;
+  /* background: #009579; */
+}
 
 /* .float-container {
     border: 3px solid #fff;
@@ -45,11 +71,11 @@ body{
     padding: 20px;
     border: 2px solid red;
 }   */
-.float-container{
+.float-container {
   /* position: fixed;
   top: 50%;
   /* left: 50%; */
-  transform: translate(50%,50%);
+  transform: translate(50%, 50%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -57,53 +83,61 @@ body{
   width: 100%;
   background: #fff;
   border-radius: 7px;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
 }
 
 /* .float-container .registration{
   display: none; */
 /* } */
-#check:checked ~ .registration{
+#check:checked~.registration {
   display: block;
 }
-#check:checked ~ .login{
+
+#check:checked~.login {
   display: none;
 }
-#check{
+
+#check {
   display: none;
 }
-.float-container .form{
+
+.float-container .form {
   padding: 2rem;
 }
 
-.form header{
+.form header {
   font-size: 2rem;
   font-weight: 500;
   text-align: center;
   margin-bottom: 1.5rem;
 }
- .form input{
-   height: 60px;
-   width: 100%;
-   padding: 0 15px;
-   font-size: 17px;
-   margin-bottom: 1.3rem;
-   border: 1px solid #ddd;
-   border-radius: 6px;
-   outline: none;
- }
- .form input:focus{
-   box-shadow: 0 1px 0 rgba(0,0,0,0.2);
- }
-.form a{
+
+.form input {
+  height: 60px;
+  width: 100%;
+  padding: 0 15px;
+  font-size: 17px;
+  margin-bottom: 1.3rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  outline: none;
+}
+
+.form input:focus {
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+}
+
+.form a {
   font-size: 16px;
   color: #009579;
   text-decoration: none;
 }
-.form a:hover{
+
+.form a:hover {
   text-decoration: underline;
 }
-.form input.button{
+
+.form input.button {
   color: #fff;
   background: #009579;
   font-size: 1.2rem;
@@ -113,63 +147,92 @@ body{
   cursor: pointer;
   transition: 0.4s;
 }
-.form input.button:hover{
+
+.form input.button:hover {
   background: #006653;
 }
-.signup{
+
+.signup {
   font-size: 17px;
   text-align: center;
 }
-.signup label{
+
+.signup label {
   color: #009579;
   cursor: pointer;
 }
-.signup label:hover{
+
+.signup label:hover {
   text-decoration: underline;
 }
+
 /*This is for the images*/
 
-* {margin: 100; padding: 100;}
- 
+* {
+  margin: 100;
+  padding: 100;
+}
+
 div {
   margin: 20px;
   width: 500px;
   background: #eee;
 }
+
 header {
   font: bold 60px/1.5 Helvetica, Verdana, sans-serif;
 }
- 
+
 ul {
   list-style-type: none;
   width: 500px;
+  margin-top: -55px;
+  margin-left: -15px;
+
 }
- 
+
+ul li{
+  display: inline-block;
+  padding-left: 10px;
+}
+
+ul li:last-child {
+  padding-right: 10px;
+}
+
+/* ul1 {
+  list-style-type: none;
+  width: 500px;
+  margin-top: -55px;
+  margin-right: -1600px;
+} */
+
+
 h3 {
   font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
 }
- 
+
 li img {
   float: left;
   margin: 0 15px 0 0;
 }
- 
+
 li p {
   font: 1200 12px/1.5 Georgia, Times New Roman, serif;
 }
- 
+
 li {
   padding: 10px;
   overflow: auto;
 }
- 
+
 li:hover {
   background: #eee;
   cursor: pointer;
 }
 
 /*Sidebar*/
-*{
+* {
   list-style: none;
   text-decoration: none;
   margin: 0;
@@ -179,7 +242,7 @@ li:hover {
 }
 
 
-.wrapper .sidebar{
+.wrapper .sidebar {
   background: rgb(5, 68, 104);
   position: fixed;
   top: 0;
@@ -189,4 +252,3 @@ li:hover {
   padding: 20px 0;
   transition: all 0.5s ease;
 }
-

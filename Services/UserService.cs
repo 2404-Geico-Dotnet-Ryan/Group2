@@ -49,6 +49,12 @@ namespace ProjectTwo.Services
         public UserDTO GetUserById(int UserId)
         {
             var user = _context.Users.Find(UserId);
+            
+            if (user == null)
+            {
+                throw new Exception("User not found");
+            }
+            
             var userDto = new UserDTO
             {
                 UserName = user.UserName,

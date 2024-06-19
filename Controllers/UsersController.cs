@@ -29,12 +29,25 @@ namespace ProjectTwo.Controllers
         [HttpGet("{UserId}")]
         public ActionResult<UserDTO> GetUserById(int UserId)
         {
-            var user = _usersService.GetUserById(UserId);
-            if (user == null)
-            {
-                return NotFound();
-            }
+            try {
+                var user = _usersService.GetUserById(UserId);
+            // if (user == null)
+            // {
+            //     return NotFound();
+            // }
             return Ok(user);
+            }
+            catch (Exception e)
+            {
+                if (e.Message == "User not found")
+                {
+                    return NotFound(e.Message);
+                }
+                else
+                {
+                    throw;
+                }
+            }
         }
 
         [HttpPost]
@@ -80,7 +93,12 @@ namespace ProjectTwo.Controllers
             try
             {
                 var user = _usersService.LoginUser(userloginDto);
-                return Ok(user);
+                if (user == null) {
+                    return NotFound("Invalid UserName / Password combo. Please try again.");
+                }
+                else {
+                    return Ok(user);
+                }
             }
             catch (Exception e)
             {

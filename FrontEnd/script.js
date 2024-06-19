@@ -48,12 +48,19 @@ function GenerateLoginContainer() {
   // Append the login container to the main user container
   userContainerDiv.appendChild(loginDiv);
 
+  const loginErrorMessage = document.createElement("p");
+  loginErrorMessage.id = "login-error-message";
+  loginErrorMessage.style.color = "red";
+  loginErrorMessage.style.fontWeight = "bold";
+  loginErrorMessage.style.paddingTop = "15px";
+
   // Append the username and password fields and labels to the login container
   loginDiv.appendChild(userNameInputLabel);
   loginDiv.appendChild(userNameInput);
   loginDiv.appendChild(passwordInputLabel);
   loginDiv.appendChild(passwordInput);
   loginDiv.appendChild(loginButton);
+  loginDiv.appendChild(loginErrorMessage);
 
   // Add an event listener to the login button to handle login
   loginButton.addEventListener("click", GetLoginInformation);
@@ -85,12 +92,17 @@ function TeardownUserContainer() {
 }
 
 
-function GetLoginInformation() {
+async function GetLoginInformation() {
   let userName = document.querySelector("#userName-input").value;
   let password = document.querySelector("#password-input").value;
 
   // Call the function to log in the user
-  LoginUser(userName, password);
+  try {
+    await LoginUser(userName, password);
+  } catch (e) {
+    const loginErrorMessage = document.querySelector("#login-error-message");
+    loginErrorMessage.textContent = e.message;
+  }
 }
 
 async function LoginUser(userName, password) {
@@ -125,6 +137,7 @@ async function LoginUser(userName, password) {
     // console.log(data);
   } catch (e) {
     console.error('Error logging in:', e); // Added error logging
+    throw new Error('Error logging in: incorrect username password combination');
   }
 }
 GenerateLoginContainer();
@@ -323,6 +336,10 @@ async function GeneratePurchaseContainer() {
   const messageElement = document.createElement("p");
   const buyButton = document.createElement("button");
   buyButton.textContent = "Purchase";
+  buyButton.style.marginLeft = "10px";
+  buyButton.style.padding = "10px";
+  buyButton.style.backgroundColor = "white";
+  buyButton.style.fontWeight = "bold";
   buyButton.addEventListener("click", async function () {
     const plantId = parseInt(dropdown.value);
     const quantity = 1;
@@ -474,7 +491,6 @@ async function GeneratePurchaseHistoryContainer() {
   const purchaseHistories = await GetPurchaseHistories();
   //filters history by user
   const purchaseHistoryForUser = purchaseHistories.filter(purchaseHistory => purchaseHistory.userId === current_user.userId);
-  console.log(purchaseHistoryForUser, purchaseHistories, current_user);
 
   //Chante code for table
   //creates a <table> element and a d <tbody> element
@@ -485,7 +501,7 @@ async function GeneratePurchaseHistoryContainer() {
   for (let i = 0; i < purchaseHistoryForUser.length; i++) {
     //create a table row
     const row = document.createElement("tr");
-    const purchaseHistory = purchaseHistories[i];
+    const purchaseHistory = purchaseHistoryForUser[i];
     //const data = Object.entries(purchaseHistory);
     const plant = await GetPlantById(purchaseHistory.plantId);
     const data = [

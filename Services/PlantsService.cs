@@ -38,7 +38,6 @@ namespace ProjectTwo.Services
         public PlantDTO GetPlantById(int PlantId)
         {
             var plant = _context.Plants
-            //.Include(h => h.PurchaseHistory)
             .FirstOrDefault(p => p.PlantId == PlantId);
 
             if (plant == null)
@@ -59,7 +58,6 @@ namespace ProjectTwo.Services
         public IEnumerable<PlantDTO> GetPlants()
         {
             var plants = _context.Plants
-                //.Include(p => p.PurchaseHistory)
                 .Select(p => new PlantDTO
                 {
                     PlantId = p.PlantId,

@@ -36,7 +36,6 @@ namespace ProjectTwo.DTOs
     public class LoginResponseDTO
     {
         public string UserName { get; set; }
-
     }
 
 }

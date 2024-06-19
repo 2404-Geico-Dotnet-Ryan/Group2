@@ -99,7 +99,6 @@ namespace ProjectTwo.Services
                 Password = user.Password,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
-
             };
         }
         private User ConvertUserDTOToUser(UserDTO userDto)

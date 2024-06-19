@@ -10,30 +10,5 @@ namespace ProjectTwo.Models
 
         public User User { get; set; }
         public Plant Plant { get; set; }
-
-        //public ICollection<Plant> Plants {get;set;}
-        // No Arg Constructor
-        /*
-        public PurchaseHistory()
-        {
-
-        }
-
-        // Full Arg Constructor
-        public PurchaseHistory(int purchaseHistoryId, int userId, int plantId, double price, int quantity)
-        {
-            PurchaseHistoryId = purchaseHistoryId;
-            UserId = userId;
-            PlantId = plantId;
-            Price = price;
-            Quantity = quantity;
-        }
-
-        // ToString
-        public override string ToString()
-        {
-            return $"{{PurchaseId: {PurchaseHistoryId}, User Id: {UserId}, Plant Id: {PlantId}, Price: {Price}, Quantity: {Quantity}}}";
-        }
-        */
     }
 }

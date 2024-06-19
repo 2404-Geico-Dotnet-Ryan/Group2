@@ -1,19 +1,8 @@
 const BASE_URL = " http://localhost:5238";
 let current_user = {};
-/*
-  <div id="user-container" class="float-container">
-    <input type="checkbox" id="check">*/
+
 const userContainerDiv = document.querySelector("#user-container");
 
-/*
-<div id="login-container" class="float-login form">
-  <header>Login</header>
-  <form action="#">
-    <input type="text" placeholder="Enter your UserName">
-    <input type="password" placeholder="Enter your password">
-    <input type="button" class="button" value="Login">
-  </form>    
-</div>*/
 const loginContainerDiv = document.querySelector("#login-container");
 
 function GenerateLoginContainer() {
@@ -131,10 +120,6 @@ async function LoginUser(userName, password) {
     //Generate Purchase container
     GeneratePurchaseContainer();
 
-
-
-    //generateHomePageContainer(data);
-    // console.log(data);
   } catch (e) {
     console.error('Error logging in:', e); // Added error logging
     throw new Error('Error logging in: incorrect username password combination');
@@ -142,17 +127,6 @@ async function LoginUser(userName, password) {
 }
 GenerateLoginContainer();
 
-/*
-    <div id="registration-container" class="float-registration form">
-      <header>Signup</header>
-      <form action="#">
-        <input type="text" placeholder="Enter your First Name">
-        <input type="password" placeholder="Enter Your Last Name">
-        <input type="password" placeholder="Enter your UserName">
-        <input type="password" placeholder="Enter your Password">
-        <input type="button" class="button" value="Signup">
-      </form>
-  */
 const registrationContainerDiv = document.querySelector("#registration-container");
 
 function GenerateRegistrationContainer() {
@@ -225,9 +199,6 @@ function TeardownRegistrationContainer() {
 
   // If the login container exists, remove all its children
   if (registrationDiv != null) {
-    //while (registrationDiv.firstChild) {
-    //registrationDiv.firstChild.remove();
-    //}
     registrationDiv.remove();
   }
 }
@@ -290,10 +261,6 @@ async function GetAllPlants() {
   }
 }
 
-
-
-
-
 const homepageContainer = document.querySelector("#homepage-container");
 async function GeneratePurchaseContainer() {
   //TeardownPurchaseContainer()
@@ -334,12 +301,14 @@ async function GeneratePurchaseContainer() {
 
   //Purchase button and message and click
   const messageElement = document.createElement("p");
+  messageElement.className = "Confirmation";
   const buyButton = document.createElement("button");
+  buyButton.className = "PurchaseButton";
   buyButton.textContent = "Purchase";
   buyButton.style.marginLeft = "10px";
   buyButton.style.padding = "10px";
-  buyButton.style.backgroundColor = "white";
-  buyButton.style.fontWeight = "bold";
+  // buyButton.style.backgroundColor = "#009579";
+  // buyButton.style.fontWeight = "bold";
   buyButton.addEventListener("click", async function () {
     const plantId = parseInt(dropdown.value);
     const quantity = 1;
@@ -402,32 +371,6 @@ async function GeneratePurchaseContainer() {
   purchaseContainerDiv.appendChild(buyButton);
   purchaseContainerDiv.appendChild(messageElement);
 
-
-  // fetch(url)  
-  //   .then(  
-  //     function(response) {  
-  //       if (response.status !== 200) {  
-  //         console.warn('Looks like there was a problem. Status Code: ', 
-  //           response.status);  
-  //         return;  
-  //       }
-
-  //       // Examine the text in the response  
-  //       response.json().then(function(data) {  
-  //         let option;
-
-  //         for (let i = 0; i < data.length; i++) {
-  //           option = document.createElement('option');
-  //           option.text = data[i].name;
-  //           option.value = data[i].abbreviation;
-  //           dropdown.add(option);
-  //         }    
-  //       });  
-  //   }  
-  // )  
-  // .catch(function(err) {  
-  //   console.error('Fetch Error -', err);  
-  // });
 }
 
 function TeardownPurchaseContainer(){
@@ -435,32 +378,8 @@ function TeardownPurchaseContainer(){
   if (purchaseContainer != null) {
     while (purchaseContainer.firstChild) {
       purchaseContainer.firstChild.remove();
-
     }
   }
-
-}
-
-//   <div id="Purchase-container"> </div>
-//   <div> <div id="Purchase-container" class="float-Purchase list">
-//     <header>Checkout</header>
-//     <p>Please select which plant you'd like to purchase from the Plant List below. </p>
-//   <body>
-//     <div class="col-md-4">
-//     <form>
-//     <h4>Plant List</h4>
-//     <select class="form-control"  id='firstList' name='firstList' onClick="getPlants()">
-//     </select>
-//     <form action="#"></form>
-//     <input type="button" class="button" value="Purchase">
-
-// </div>
-
-
-
-
-function GenerateMenuContainer() {
-
 }
 
 function TeardownHomepageContainer() {
@@ -502,7 +421,6 @@ async function GeneratePurchaseHistoryContainer() {
     //create a table row
     const row = document.createElement("tr");
     const purchaseHistory = purchaseHistoryForUser[i];
-    //const data = Object.entries(purchaseHistory);
     const plant = await GetPlantById(purchaseHistory.plantId);
     const data = [
       ["Plant Name", plant.plantName],
@@ -532,16 +450,7 @@ async function GeneratePurchaseHistoryContainer() {
   homepageContainer.appendChild(purchaseHistoryContainer);
   //sets the border attribute of tbl to 2;
   tbl.setAttribute("border", "2");
-
-
-
-
-
-
 }
-
-//GeneratePurchaseHistoryContainer();
-
 
 async function GetPurchaseHistories() {
   try {
@@ -551,7 +460,6 @@ async function GetPurchaseHistories() {
         'Content-Type': "application/json"
       },
     });
-
 
     const purchaseHistories = await response.json();
     return purchaseHistories
@@ -568,7 +476,6 @@ async function GetPlantById(plantId) {
         'Content-Type': "application/json"
       },
     });
-
 
     const plant = await response.json();
     return plant
@@ -592,23 +499,17 @@ async function BuyPlant(userId, plantId, quantity, price) {
       }),
     });
 
-
     const purchaseHistory = await response.json();
     return purchaseHistory
   } catch (e) {
     console.error("Error buying plant:", e);
   }
-
-
 }
 function TeardownPurchaseHistoryContainer() {
-
-
-  // If the purchase container is not null, remove all its children
+ // If the purchase container is not null, remove all its children
   if (purchaseHistoryContainer != null) {
     while (purchaseHistoryContainer.firstChild) {
       purchaseHistoryContainer.firstChild.remove();
-
     }
   }
 }
@@ -618,7 +519,6 @@ function RedisplayPurchaseContainer(){
     return;
   }
   TeardownHomepageContainer()
-  //TeardownPurchaseContainer()
   TeardownPurchaseHistoryContainer()
   GeneratePurchaseContainer()
 }

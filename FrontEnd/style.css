@@ -45,11 +45,9 @@ i {
   font-size: 20px;
 }
 
-
 li {
   font-size: 15px;
   display: inline-flex;
-
 }
 
 .homepage {
@@ -57,24 +55,9 @@ li {
   justify-content: space-between;
   padding: 50px;
   width: 95%;
-  /* background: #009579; */
 }
 
-/* .float-container {
-    border: 3px solid #fff;
-    padding: 20px;
-}
- 
-.float-child {
-    width: 50%;
-    float: left;
-    padding: 20px;
-    border: 2px solid red;
-}   */
 .float-container {
-  /* position: fixed;
-  top: 50%;
-  /* left: 50%; */
   transform: translate(50%, 50%);
   display: flex;
   justify-content: center;
@@ -86,9 +69,6 @@ li {
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* .float-container .registration{
-  display: none; */
-/* } */
 #check:checked~.registration {
   display: block;
 }
@@ -167,7 +147,6 @@ li {
 }
 
 /*This is for the images*/
-
 * {
   margin: 100;
   padding: 100;
@@ -188,7 +167,6 @@ ul {
   width: 500px;
   margin-top: -55px;
   margin-left: -15px;
-
 }
 
 ul li{
@@ -199,14 +177,6 @@ ul li{
 ul li:last-child {
   padding-right: 10px;
 }
-
-/* ul1 {
-  list-style-type: none;
-  width: 500px;
-  margin-top: -55px;
-  margin-right: -1600px;
-} */
-
 
 h3 {
   font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
@@ -241,7 +211,6 @@ li:hover {
   font-family: 'Open Sans', sans-serif;
 }
 
-
 .wrapper .sidebar {
   background: rgb(5, 68, 104);
   position: fixed;
@@ -251,4 +220,17 @@ li:hover {
   height: 100%;
   padding: 20px 0;
   transition: all 0.5s ease;
+}
+
+.Confirmation {
+  color: #006653;
+  font-weight: bolder;
+  font-size: medium;
+  margin-top: 15px;
+}
+
+.PurchaseButton {
+background-color: #006653;
+font-weight: bold;
+color: white;
 }
